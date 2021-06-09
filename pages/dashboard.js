@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { withPageAuthRequired, useUser } from '@auth0/nextjs-auth0'
 
 const dashboard = () => {
