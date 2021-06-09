@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Image from 'next/image';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        Hello
+        <Image src="/home.jpeg" width="800" height="500" />
       </main>
     </div>
   )
