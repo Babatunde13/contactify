@@ -8,7 +8,9 @@ const dashboard = () => {
             {user && (
                 <div>
                     <img src={user.picture} className="rounded-circle m-3"/> 
-                    <span>Welcome {user.nickname}</span> 
+                    <span>Welcome {user.name}</span> 
+                    {!user.email_verified && <div>Your account is not verified</div>}
+                    <button className="d-flex justify-content-end bg-black">New Contact</button>
                 </div>
             )}
             </main>
