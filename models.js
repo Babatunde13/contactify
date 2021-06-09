@@ -5,52 +5,15 @@ import dotenv from 'dotenv'
 dotenv.config()
 const client = new faunadb.Client({secret: process.env.REACT_APP_FAUNA_KEY})
 
-export  const createUser = async (firstName, email, lastName, password, avatar) => {
-  password = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-  let newUser = await client.query(
-    q.Create(
-      q.Collection('users'),
-      {
-        data: {
-          firstName, 
-          email, 
-          lastName, 
-          password,
-          avatar
-        }
-      }
-    )
-  )
-  if (newUser.name === 'BadRequest') return
-  newUser.data.id = newUser.ref.value.id
-  return newUser.data
-}
-
-export const getUser = async (userId) => {
-  const userData = await client.query(
-    q.Get(
-      q.Ref(q.Collection('users'), userId)
-    )
-  )
-  if (userData.name === "NotFound") return
-  if (userData.name === "BadRequest") return "Something went wrong"
-  return userData.data
-}
-
-export const loginUser = async (email, password) => {
-  let userData = await client.query(
-    q.Get(
-      q.Match(q.Index('user_by_email'), email)
-    )
-  )
-  if (userData.name === "NotFound") return
-  if (userData.name === "BadRequest") return "Something went wrong"
-  userData.data.id = userData.ref.value.id
-  if (bcrypt.compareSync(password, userData.data.password)) return userData.data
-  else return
-}
-
-export const createContact = async (avatar, firstName, lastName, email, phone, tags, userId, jobTitle, company) => {
+export const createContact = async (
+  firstName, 
+  lastName, 
+  email, 
+  phone,
+  user, 
+  jobTitle, 
+  company
+) => {
   let user = await getUser(userId)
   const date = new Date()
   const months = [
@@ -68,14 +31,13 @@ export const createContact = async (avatar, firstName, lastName, email, phone, t
           phone,
           company,
           jobTitle,
-          avatar,
           created__at: `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
           user: {
             name:user.name, 
             email: user.email, 
-            id:user.id
-          },
-          tags
+            avatar:user.picture,
+            id: user.sub
+          }
         }
       }
     )
@@ -112,6 +74,18 @@ export const updateContact = async (payload, id) => {
     q.Update(
       q.Ref(q.Collection('contacts'), id),
       {data: {payload}}
+    )
+  )
+  if (contact.name === "NotFound") return
+  if (contact.name === "BadRequest") return "Something went wrong"
+  contact.data.id = contact.ref.value.id
+  return contact.data
+}
+
+export const deleteContact = async (payload, id) => {
+  let contact = await client.query(
+    q.Delete(
+      q.Ref(q.Collection('contacts'), id)
     )
   )
   if (contact.name === "NotFound") return
