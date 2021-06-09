@@ -1,5 +1,4 @@
-import faunadb, {query as q} from 'faunadb'
-import bcrypt from 'bcryptjs'
+import faunadb, {query as q, ToArray} from 'faunadb'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -14,7 +13,6 @@ export const createContact = async (
   jobTitle, 
   company
 ) => {
-  let user = await getUser(userId)
   const date = new Date()
   const months = [
     "January", "February", "March", "April", "May", "June",
@@ -48,15 +46,20 @@ export const createContact = async (
 }
 
 export const getContactsByUserID = async id => {
-  let userContacts = await client.query(
-    q.Get(
-      q.Match(q.Index('user_contacts'), id)
+  try {
+    let userContacts = await client.query(
+      q.Get(
+        q.Match(q.Index('user_contacts'), id)
+      )
     )
-  )
-  if (userContacts.name === "NotFound") return
-  if (userContacts.name === "BadRequest") return "Something went wrong"
-  userContacts.data.id = userContacts.ref.value.id
-  return userContacts.data
+    if (userContacts.name === "NotFound") return
+    if (userContacts.name === "BadRequest") return "Something went wrong"
+    userContacts.data.id = userContacts.ref.value.id
+    return userContacts.data
+  } catch (error) {
+    console.log(error.message)
+    if (error.message === 'instance not found') return []
+  }
 }
 
 export const getContact = async id => {
