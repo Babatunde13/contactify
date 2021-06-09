@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {
-    Navbar, Nav, NavDropdown
+    Navbar, Nav
 } from 'react-bootstrap'
 // import favicon from '../assets/favicon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +15,7 @@ const NavbarComponent = (props) => {
       style={{position : "sticky", top : "0", zIndex: "10000", backgroundColor : "#d1e1f0e7"}}
     >
       <Navbar.Brand 
-        to="/" 
+        href="/" 
         style={{cursor : 'pointer'}}>
           <img src="../assets/favicon.png" alt="" style={{width : '40px', height :  '40px'}} className="mr-2" /> 
           Password Manager
@@ -23,25 +23,24 @@ const NavbarComponent = (props) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <a to="/" className="mt-2" style={{textDecoration : "none"}}>Home</a>
+          <a href="/" className="mt-2" style={{textDecoration : "none"}}>Home</a>
           
-          {/* {!localStorage.getItem('userId')  ?  */}
+          {/* {!localShrefrage.ge('userId')  ?  */}
           <>
-          <NavDropdown 
+          <a 
             title={<FontAwesomeIcon 
             icon={faUserCircle} 
-            size="2x" 
+            size="2x"
             className="text-primary" />} alignRight id="basic-nav-dropdown">
-            <NavDropdown.Item to="/login" className="text-primary">Sign in</NavDropdown.Item>
-            <NavDropdown.Item to="/register" className="text-primary">Register</NavDropdown.Item>
-          </NavDropdown>
+            <a href="api/auth/login" className="text-primary">Sign in</a>
+            <a href="/api/auth/register" className="text-primary">Register</a>
+          </a>
           </>
           <>
-          <NavDropdown title={<FontAwesomeIcon icon={faCog} size="2x" className="text-primary" />} alignRight id="basic-nav-dropdown">
-            <NavDropdown.Item to="/dashboard" className="text-primary" >Dashboard</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item to="/logout" className="text-primary" >Logout</NavDropdown.Item>
-          </NavDropdown>
+          <a title={<FontAwesomeIcon icon={faCog} size="2x" className="text-primary" />} alignRight id="basic-nav-dropdown">
+            <a href="/dashboard" className="text-primary" >Dashboard</a>
+            <a href="api/auth/logout" className="text-primary" >Logout</a>
+          </a>
           </>
           {/* } */}
         </Nav>
