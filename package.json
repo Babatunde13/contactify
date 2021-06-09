@@ -8,14 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-=======
     "@auth0/nextjs-auth0": "^1.4.0",
->>>>>>> c8ef8622b4ea5b52f088e5c9105c223ca31f073b
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.6.0",
     "faunadb": "^4.3.0",
