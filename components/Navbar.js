@@ -9,25 +9,26 @@ const NavbarComponent = (props) => {
   console.log(user)
   return (
     <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">Contact Manager</Navbar.Brand>
+      <Navbar.Brand className="mx-2 mx-md-4" href="/">Contact Manager</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          {user && <Nav.Link href="/dashboard">Dashboard</Nav.Link>}
-          {user && <Nav.Link href="/profile">Profile</Nav.Link>}
-            {!user ? 
-              <Nav.Link className="mr-auto" href="api/auth/login">Sign In </Nav.Link> : 
-              <>
-                <Nav.Link className="mr-auto" href="api/auth/logout">Sign Out</Nav.Link>
-                <Nav.Link className="mr-auto" href="#">
-                  {/* <Image src={user.picture} width="50" height="50" style={{backgroundRadius: '50%'}} /> */}
-                </Nav.Link>
-              </>
-            }
-        </Nav>
+      <Navbar.Collapse className="d-lg-flex justify-content-end" id="responsive-navbar-nav">
+        {user && <Nav.Link className="text-light" href="/dashboard">Dashboard</Nav.Link>}
+          {!user ? 
+            <Nav.Link className="text-light" href="api/auth/login">Sign In </Nav.Link> : 
+            <>
+              <Nav.Link className="text-light" href="api/auth/logout">Sign Out</Nav.Link>
+              <Nav.Link href="/profile">
+                <Image loader={myLoader} src={user.picture} width="35" height="35" className="rounded-circle" />
+              </Nav.Link>
+            </>
+          }
       </Navbar.Collapse>
-</Navbar>
+    </Navbar>
   )
+}
+
+const myLoader=({src})=>{
+  return src;
 }
 
 export default NavbarComponent

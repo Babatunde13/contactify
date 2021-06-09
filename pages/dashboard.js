@@ -12,10 +12,10 @@ const dashboard = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavbarComponent />
-            <main>
+            <main className="mt-5 p-5">
             {user && (
                 <div>
-                    <img src={user.picture} /> 
+                    <img src={user.picture} className="rounded-circle m-3"/> 
                     <span>Welcome {user.nickname}</span> 
                 </div>
             )}
