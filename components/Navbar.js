@@ -1,51 +1,32 @@
-import {useState} from 'react'
 import {
     Navbar, Nav
 } from 'react-bootstrap'
-// import favicon from '../assets/favicon.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faCog } from '@fortawesome/free-solid-svg-icons'
+import { useUser } from '@auth0/nextjs-auth0';
+import Image from 'next/image';
 
 const NavbarComponent = (props) => {
-
+  const {user, error, isLoading} = useUser()
+  console.log(user)
   return (
-    <Navbar 
-      expand="lg" 
-      className="navbar-fixed-top" 
-      style={{position : "sticky", top : "0", zIndex: "10000", backgroundColor : "#d1e1f0e7"}}
-    >
-      <Navbar.Brand 
-        href="/" 
-        style={{cursor : 'pointer'}}>
-          <img src="../assets/favicon.png" alt="" style={{width : '40px', height :  '40px'}} className="mr-2" /> 
-          Password Manager
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <a href="/" className="mt-2" style={{textDecoration : "none"}}>Home</a>
-          
-          {/* {!localShrefrage.ge('userId')  ?  */}
-          <>
-          <a 
-            title={<FontAwesomeIcon 
-            icon={faUserCircle} 
-            size="2x"
-            className="text-primary" />} alignRight id="basic-nav-dropdown">
-            <a href="api/auth/login" className="text-primary">Sign in</a>
-            <a href="/api/auth/register" className="text-primary">Register</a>
-          </a>
-          </>
-          <>
-          <a title={<FontAwesomeIcon icon={faCog} size="2x" className="text-primary" />} alignRight id="basic-nav-dropdown">
-            <a href="/dashboard" className="text-primary" >Dashboard</a>
-            <a href="api/auth/logout" className="text-primary" >Logout</a>
-          </a>
-          </>
-          {/* } */}
+    <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar.Brand href="#home">Contact Manager</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          {user && <Nav.Link href="/dashboard">Dashboard</Nav.Link>}
+          {user && <Nav.Link href="/profile">Profile</Nav.Link>}
+            {!user ? 
+              <Nav.Link className="mr-auto" href="api/auth/login">Sign In </Nav.Link> : 
+              <>
+                <Nav.Link className="mr-auto" href="api/auth/logout">Sign Out</Nav.Link>
+                <Nav.Link className="mr-auto" href="#">
+                  {/* <Image src={user.picture} width="50" height="50" style={{backgroundRadius: '50%'}} /> */}
+                </Nav.Link>
+              </>
+            }
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
+</Navbar>
   )
 }
 
