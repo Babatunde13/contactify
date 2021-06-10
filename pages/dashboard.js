@@ -1,7 +1,6 @@
 import { withPageAuthRequired, useUser } from '@auth0/nextjs-auth0'
 
-const dashboard = () => {
-    const { user, error, isLoading } = useUser();
+const dashboard = ({user}) => {
     return (
         <div>
             <main className="mt-5 p-5">
@@ -18,7 +17,15 @@ const dashboard = () => {
     )
 }
 
+export const getServerSideProps = withPageAuthRequired({
+    // returnTo: '',
+    async getServerSideProps(context) {
+        console.log(await fetch('http://localhost:3000/api/contacts'))
+        return {
+            props: {}, // will be passed to the page component as props
+        }
+    }
 
-export const getServerSideProps = withPageAuthRequired()
+})
 
 export default dashboard
