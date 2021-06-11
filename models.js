@@ -83,7 +83,7 @@ export const updateContact = async (payload, id) => {
   return contact.data
 }
 
-export const deleteContact = async (payload, id) => {
+export const deleteContact = async id => {
   let contact = await client.query(
     q.Delete(
       q.Ref(q.Collection('contacts'), id)

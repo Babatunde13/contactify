@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0"
-import { createContact, getContactsByUserID } from "../../models"
+import { createContact, deleteContact, getContactsByUserID } from "../../models"
 
 export default withApiAuthRequired(async (req, res) => {
     const user = getSession(req, res).user
@@ -33,6 +33,18 @@ export default withApiAuthRequired(async (req, res) => {
         res.status(200).json({ 
             message: "Successfully retrieved contacts",
             data: contacts,
+            status: 'ok'
+        })
+    } else if (req.method === 'DELETE') {
+        let contact = await deleteContact(req.query.id)
+        if (!contact) return res.status(400).json({
+            message: 'Something went wrong',
+            data: null,
+            status: false
+        })
+        res.status(204).json({ 
+            message: "Successfully deleted contact",
+            data: contact,
             status: 'ok'
         })
     } else {

@@ -21,11 +21,21 @@ export default function App({ Component, pageProps }) {
     setContacts([newContact.data, ...contacts])
   }
 
+  const deleteContact = async id => {
+    (await axios.delete(`/api/contacts/${id}`)).data
+    console.log(newContact.data)
+    setContacts(contacts.filter(contact => contact.id !== id))
+  }
+
   return (
     <UserProvider>
       <MetaData />
       <NavbarComponent onCreate={createContact} />
-      <Component {...pageProps} contacts={contacts} />
+      <Component 
+        {...pageProps} 
+        contacts={contacts} 
+        deleteContact={deleteContact} 
+      />
     </UserProvider>
   );
 }
