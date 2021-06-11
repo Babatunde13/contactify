@@ -12,13 +12,19 @@ export default function App({ Component, pageProps }) {
   useEffect(async () => {
     let res = (await axios.get(`/api/contacts`)).data
     res = res.data
-    console.log(res)
     setContacts(res)
-}, [])
+  }, [])
+
+  const createContact = async payload => {
+    let newContact = (await axios.post(`/api/contacts`, payload)).data
+    console.log(newContact.data)
+    setContacts([newContact.data, ...contacts])
+  }
+
   return (
     <UserProvider>
       <MetaData />
-      <NavbarComponent />
+      <NavbarComponent onCreate={createContact} />
       <Component {...pageProps} contacts={contacts} />
     </UserProvider>
   );

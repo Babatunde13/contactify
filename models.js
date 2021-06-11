@@ -9,7 +9,8 @@ export const createContact = async (
   phone,
   user, 
   jobTitle, 
-  company
+  company,
+  address
 ) => {
   const date = new Date()
   const months = [
@@ -27,11 +28,9 @@ export const createContact = async (
           phone,
           company,
           jobTitle,
+          address,
           created__at: `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
           user: {
-            name:user.name, 
-            email: user.email, 
-            avatar:user.picture,
             id: user.sub
           }
         }
@@ -52,7 +51,8 @@ export const getContactsByUserID = async id => {
     )
     if (userContacts.name === "NotFound") return
     if (userContacts.name === "BadRequest") return "Something went wrong"
-    return userContacts.data.map(async contactId =>  await getContact(contactId.value.id))
+    let contacts = userContacts.data.map(async contactId =>  await getContact(contactId.value.id))
+    return contacts
   } catch (error) {
     console.log(error.message)
     if (error.message === 'instance not found') return []
