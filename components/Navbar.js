@@ -1,18 +1,35 @@
 import {
-    Navbar, Nav
+    Navbar, Nav, Button
 } from 'react-bootstrap'
 import { useUser } from '@auth0/nextjs-auth0';
 import Image from 'next/image';
+import CreateContactModal from './CreateContact.modal'
+import { useState } from 'react';
 
 const NavbarComponent = (props) => {
-  const {user, error, isLoading} = useUser()
+  const {user} = useUser()
+  const [createModalShow, setCreateModalShow] = useState(false);
+  const handleHide = () => {
+    let n = window.confirm("Your changes won't be saved...")
+    if (n) setCreateModalShow(false)
+  }
   console.log(user)
   return (
     <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand className="mx-2 mx-md-4" href="/">Contact Manager</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="d-lg-flex justify-content-end" id="responsive-navbar-nav">
-        {user && <Nav.Link className="text-light" href="/dashboard">Dashboard</Nav.Link>}
+        {user && <>
+              <Button variant="primary" onClick={() => setCreateModalShow(true)}>
+                Create New Contact
+              </Button>
+              <CreateContactModal
+                show={createModalShow}
+                onHide={handleHide}
+                onCreate ={(payload) => {props.onCreate(payload); setCreateModalShow(false)}}
+              />
+            </>
+          }
           {!user ? 
             <Nav.Link className="text-light" href="api/auth/login">Sign In </Nav.Link> : 
             <>
