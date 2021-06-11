@@ -51,10 +51,13 @@ export const getContactsByUserID = async id => {
     )
     if (userContacts.name === "NotFound") return
     if (userContacts.name === "BadRequest") return "Something went wrong"
-    let contacts = userContacts.data.map(async contactId =>  await getContact(contactId.value.id))
+    let contacts = []
+    for (let contactId of userContacts.data) {
+      let contact = await getContact(contactId.value.id)
+      contacts.push(contact)
+    }
     return contacts
   } catch (error) {
-    console.log(error.message)
     if (error.message === 'instance not found') return []
     return
   }

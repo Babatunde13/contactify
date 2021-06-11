@@ -24,7 +24,6 @@ export default withApiAuthRequired(async (req, res) => {
         })
     } else if (req.method === 'GET') {
         let contacts = await getContactsByUserID(user.sub)
-        console.log('server', contacts)
         if (!contacts) return res.status(400).json({
             message: 'Something went wrong',
             data: null,

@@ -37,8 +37,7 @@ const Contact = ({
         <td>{firstName} {lastName}</td>
         <td>{email}</td>
         <td>{phone}</td>
-        <td>{jobTitle} @ {company}</td>
-        <td><Button onClick={previewContact}>Preview</Button></td>
+        <td>{jobTitle && jobTitle +', '} {company && company}</td>
         <td><Button onClick={editContact}>Edit</Button></td>
         <td><Button onClick={deleteContact}>Delete</Button></td>
         
@@ -89,7 +88,6 @@ const Contacts = ({contacts, handleEdit, handleDelete}) => {
             <th>Email</th>
             <th>Phone</th>
             <th>Job Title, Company</th>
-            <th>Preview</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
