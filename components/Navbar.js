@@ -13,7 +13,6 @@ const NavbarComponent = (props) => {
     let n = window.confirm("Your changes won't be saved...")
     if (n) setCreateModalShow(false)
   }
-  console.log(user)
   return (
     <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand className="mx-2 mx-md-4" href="/">Contact Manager</Navbar.Brand>

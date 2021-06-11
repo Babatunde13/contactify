@@ -7,7 +7,7 @@ export default withApiAuthRequired(async (req, res) => {
     const user = getSession(req, res).user
     if (req.method === 'PUT') {
         let contact = await updateContact(
-            ...req.body, req.query.id
+            req.body, req.query.id
             )
             res.status(201).json({ 
                 message: "Successfully updated contact",
