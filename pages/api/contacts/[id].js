@@ -22,10 +22,18 @@ export default withApiAuthRequired(async (req, res) => {
             status: 'ok'
         })
     } else if (req.method === 'DELETE') {
-        let contacts = await deleteContact(req.query.id)
+        let contact = await getContact(req.query.id)
+        if (contact.user.id !== user.sub) {
+            return res.status(403).json({
+                message: "Forbidden",
+                status: false,
+                data: null
+            })
+        }
+        contact = await deleteContact(req.query.id)
         res.status(200).json({ 
-            message: "Successfully retrieved contacts",
-            data: contacts,
+            message: "Successfully deleted contact",
+            data: contact,
             status: 'ok'
         })
     } else {

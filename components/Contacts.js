@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import EditContactModal from './EditContact.modal'
 
@@ -10,8 +9,7 @@ const Contact = ({
   lastName,
   email,
   phone,
-  company,
-  jobTitle,
+  address,
   handleDelete,
   handleEdit
 }) => {
@@ -32,7 +30,7 @@ const Contact = ({
         <td>{firstName} {lastName}</td>
         <td>{email}</td>
         <td>{phone}</td>
-        <td>{jobTitle && jobTitle +', '} {company && company}</td>
+        <td>{address}</td>
         <td><Button onClick={editContact}>Edit</Button></td>
         <td><Button onClick={deleteContact}>Delete</Button></td>
         
@@ -42,9 +40,8 @@ const Contact = ({
           lastname={lastName}
           email={email}
           phone={phone}
-          jobtitle={jobTitle}
+          address={address}
           title={"Edit Contact for "+firstName}
-          company={company}
           onHide={() => {
             let n = window.confirm("Your changes won't be saved...")
             if (n) setEditModal(false)
@@ -70,7 +67,7 @@ const Contacts = ({contacts, handleEdit, handleDelete}) => {
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Job Title, Company</th>
+            <th>Address</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>

@@ -23,12 +23,12 @@ export default function App({ Component, pageProps }) {
   const editContact = async payload => {
     let id = payload.id
     delete payload.id
-    let replacedContact = (await axios.put(`/api/contact/${id}`, payload)).data
+    let replacedContact = (await axios.put(`/api/contacts/${id}`, payload)).data
     setContacts(contacts.map(contact => contact.id === id? replacedContact.data : contact))
   }
 
   const deleteContact = async id => {
-    (await axios.delete(`/api/contact/${id}`)).data
+    (await axios.delete(`/api/contacts/${id}`)).data
     setContacts(contacts.filter(contact => contact.id !== id))
   }
 
