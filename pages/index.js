@@ -6,7 +6,6 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   const router = useRouter()
   const { user, error, isLoading } = useUser();
-  console.log(user)
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;

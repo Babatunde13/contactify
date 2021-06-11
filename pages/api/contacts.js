@@ -16,7 +16,6 @@ export default withApiAuthRequired(async (req, res) => {
             user, jobTitle, 
             company, address
         )
-        console.log(newContact)
         res.status(201).json({ 
             message: "Successfully created contact",
             data: newContact,

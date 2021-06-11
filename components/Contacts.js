@@ -2,8 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
-// import EditContactModal from './editContact.modal'
-// import PreviewContactModal from './previewContact.modal'
+import EditContactModal from './EditContact.modal'
 
 const Contact = ({
   id,
@@ -13,17 +12,13 @@ const Contact = ({
   phone,
   company,
   jobTitle,
-  handleDelete
+  handleDelete,
+  handleEdit
 }) => {
   const [editModal, setEditModal] = useState(false)
-  const [previewModal, setpreviewModal] = useState(false)
 
   const editContact = () => {
     setEditModal(true)
-  }
-
-  const previewContact = () => {
-    setpreviewModal(true)
   }
 
   const deleteContact = () => {
@@ -41,7 +36,7 @@ const Contact = ({
         <td><Button onClick={editContact}>Edit</Button></td>
         <td><Button onClick={deleteContact}>Delete</Button></td>
         
-        {/* <EditContactModal
+        <EditContactModal
           show={editModal}
           firstname={firstName}
           lastname={lastName}
@@ -55,24 +50,12 @@ const Contact = ({
             if (n) setEditModal(false)
           }}
           onEdit ={(contact) => {
-            // save contact to dB
-            // setContacts([contact, ...contacts])
+            contact.id = id
+            handleEdit(contact)
             alert(`Contact for ${firstName} updated successfully`)
             setEditModal(false)
           }}
         />
-        <PreviewContactModal
-          show={previewModal}
-          onEdit={()=>{setEditModal(true)}}
-          firstname={firstName}
-          lastname={lastName}
-          email={email}
-          phone={phone}
-          jobtitle={jobTitle}
-          title={"Preview Contact for "+firstName}
-          company={company}
-          onHide={() => {setpreviewModal(false)}}
-        /> */}
       </tr>
   )
 }

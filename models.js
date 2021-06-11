@@ -77,7 +77,7 @@ export const updateContact = async (payload, id) => {
   let contact = await client.query(
     q.Update(
       q.Ref(q.Collection('contacts'), id),
-      {data: {payload}}
+      {data: payload}
     )
   )
   if (contact.name === "NotFound") return

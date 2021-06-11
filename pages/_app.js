@@ -12,13 +12,19 @@ export default function App({ Component, pageProps }) {
   useEffect(async () => {
     let res = (await axios.get(`/api/contacts`)).data
     res = res.data
-    setContacts(res)
+    setContacts(res.reverse())
   }, [])
 
   const createContact = async payload => {
     let newContact = (await axios.post(`/api/contacts`, payload)).data
-    console.log(newContact.data)
     setContacts([newContact.data, ...contacts])
+  }
+
+  const editContact = async payload => {
+    let id = payload.id
+    delete payload.id
+    let replacedContact = (await axios.put(`/api/contact/${id}`, payload)).data
+    setContacts(contacts.map(contact => contact.id === id? replacedContact.data : contact))
   }
 
   const deleteContact = async id => {
@@ -34,6 +40,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps} 
         contacts={contacts} 
         deleteContact={deleteContact} 
+        editContact={editContact}
       />
     </UserProvider>
   );
