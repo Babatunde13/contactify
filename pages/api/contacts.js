@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { withApiAuthRequired ,getSession } from "@auth0/nextjs-auth0"
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0"
 import { createContact, getContactsByUserID } from "../../models"
 
 export default withApiAuthRequired(async (req, res) => {
@@ -16,6 +16,12 @@ export default withApiAuthRequired(async (req, res) => {
         })
     } else if (req.method === 'GET') {
         let contacts = await getContactsByUserID(user.sub)
+        console.log('server', contacts)
+        if (!contacts) return res.status(400).json({
+            message: 'Something went wrong',
+            data: null,
+            status: false
+        })
         res.status(200).json({ 
             message: "Successfully retrieved contacts",
             data: contacts,
@@ -25,7 +31,7 @@ export default withApiAuthRequired(async (req, res) => {
         res.status(405).json({
             message: 'Method not allowed',
             data: null,
-            sttaus: false
+            status: false
         })
     }
 })

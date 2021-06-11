@@ -1,7 +1,5 @@
 import faunadb, {query as q, ToArray} from 'faunadb'
-import dotenv from 'dotenv'
 
-dotenv.config()
 const client = new faunadb.Client({secret: process.env.REACT_APP_FAUNA_KEY})
 
 export const createContact = async (
@@ -48,17 +46,17 @@ export const createContact = async (
 export const getContactsByUserID = async id => {
   try {
     let userContacts = await client.query(
-      q.Get(
+      q.Paginate(
         q.Match(q.Index('user_contacts'), id)
       )
     )
     if (userContacts.name === "NotFound") return
     if (userContacts.name === "BadRequest") return "Something went wrong"
-    userContacts.data.id = userContacts.ref.value.id
-    return userContacts.data
+    return userContacts.data.map(async contactId =>  await getContact(contactId.value.id))
   } catch (error) {
     console.log(error.message)
     if (error.message === 'instance not found') return []
+    return
   }
 }
 
