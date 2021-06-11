@@ -35,6 +35,7 @@ const EditContactModal = props  => {
     updateAddress={newInput => setAddress(newInput)}
     btnText="Edit"
     handleEdit={onEdit}
+    create={false}
   />
 }
 
