@@ -1,15 +1,8 @@
 import { withPageAuthRequired, useUser } from '@auth0/nextjs-auth0'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import Contacts from '../components/Contacts'
 
-const dashboard = ({user}) => {
-    const [contacts, setContacts] = useState([])
-    useEffect(async () => {
-        let res = await (await axios.get(`/api/contacts`)).data
-        res = res.data
-        setContacts(res)
-    }, [])
+const dashboard = ({contacts, user}) => {
+    console.log(contacts)
     return (
         <div>
             <main className="mt-5 p-5">
@@ -36,14 +29,6 @@ const dashboard = ({user}) => {
     )
 }
 
-export const getServerSideProps = withPageAuthRequired({
-    // returnTo: '',
-    async getServerSideProps(context) {
-        return {
-            props: {}, // will be passed to the page component as props
-        }
-    }
-
-})
+export const getServerSideProps = withPageAuthRequired()
 
 export default dashboard
