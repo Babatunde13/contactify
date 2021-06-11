@@ -22,8 +22,7 @@ export default function App({ Component, pageProps }) {
   }
 
   const deleteContact = async id => {
-    (await axios.delete(`/api/contacts/${id}`)).data
-    console.log(newContact.data)
+    (await axios.delete(`/api/contact/${id}`)).data
     setContacts(contacts.filter(contact => contact.id !== id))
   }
 
