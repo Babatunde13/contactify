@@ -1,7 +1,7 @@
 import { withPageAuthRequired, useUser } from '@auth0/nextjs-auth0'
 import Contacts from '../components/Contacts'
 
-const dashboard = ({contacts, user}) => {
+const dashboard = ({contacts, user, deleteContact}) => {
     console.log(contacts)
     return (
         <div>
@@ -22,7 +22,7 @@ const dashboard = ({contacts, user}) => {
                     
                 }}
                 handleDelete={(id) => {
-                setContacts(contacts.filter( ele =>  ele.id !== id)) 
+                    deleteContact(id)
                 }}  
             />
       </div>

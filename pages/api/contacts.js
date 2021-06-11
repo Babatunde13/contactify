@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0"
-import { createContact, getContactsByUserID } from "../../models"
+import { createContact, deleteContact, getContactsByUserID } from "../../models"
 
 export default withApiAuthRequired(async (req, res) => {
     const user = getSession(req, res).user
