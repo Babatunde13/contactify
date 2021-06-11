@@ -6,9 +6,17 @@ import { createContact, getContactsByUserID } from "../../models"
 export default withApiAuthRequired(async (req, res) => {
     const user = getSession(req, res).user
     if (req.method === 'POST') {
+        let {
+            firstName, lastName, email,
+            company, jobTitle, phone, address
+        } = req.body
         let newContact = await createContact(
-            ...req.body, user
+            firstName, lastName, 
+            email, phone,
+            user, jobTitle, 
+            company, address
         )
+        console.log(newContact)
         res.status(201).json({ 
             message: "Successfully created contact",
             data: newContact,

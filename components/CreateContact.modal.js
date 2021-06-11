@@ -15,7 +15,7 @@ const CreateContactModal = (props)  => {
   const [phone, setPhone] = useState('') 
   const [address, setAddress] = useState('')
 
-  const onCreate = () => {
+  const handleCreate = () => {
     const payload = {
       firstName,
       lastName,
@@ -25,8 +25,6 @@ const CreateContactModal = (props)  => {
       phone, 
       address
     }
-    // save to db
-    // add to DOM
     props.onCreate(payload)
   }
 
@@ -93,7 +91,7 @@ const CreateContactModal = (props)  => {
       </Modal.Body>
     <Modal.Footer>
         <Button variant="danger" onClick={props.onHide}>Close</Button>
-        <Button variant="success" onClick={onCreate} disabled={(!firstName || !lastName || !phone) ? true : false}>Create</Button>
+        <Button variant="success" onClick={handleCreate} disabled={(!firstName || !lastName || !phone) ? true : false}>Create</Button>
       </Modal.Footer>
     </Modal>
   );
