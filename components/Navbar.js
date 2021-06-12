@@ -18,6 +18,7 @@ const NavbarComponent = () => {
             <Image alt="avatar" loader={myLoader} src={`https://ui-avatars.com/api/?background=random&name=John+Doe`} width="35" height="35" className="rounded-circle" />
             </> :
             <>
+              <Nav.Link className="text-light" href="/dashboard">Dashboard</Nav.Link>
               <Nav.Link className="text-light" href="api/auth/logout">Sign Out</Nav.Link>
               <Nav.Link href="/profile">
                 <Image alt="avatar" loader={myLoader} src={user.picture || `https://ui-avatars.com/api/?background=random&name=${firstName}+${lastName}`} width="35" height="35" className="rounded-circle" />
