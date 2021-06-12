@@ -15,12 +15,12 @@ const NavbarComponent = () => {
           {!user ? 
             <>
               <Nav.Link className="text-light" href="api/auth/login">Sign In </Nav.Link> : 
-            <Image loader={myLoader} src={`https://ui-avatars.com/api/?background=random&name=John+Doe`} width="35" height="35" className="rounded-circle" />
+            <Image alt="avatar" loader={myLoader} src={`https://ui-avatars.com/api/?background=random&name=John+Doe`} width="35" height="35" className="rounded-circle" />
             </> :
             <>
               <Nav.Link className="text-light" href="api/auth/logout">Sign Out</Nav.Link>
               <Nav.Link href="/profile">
-                <Image loader={myLoader} src={user.picture || `https://ui-avatars.com/api/?background=random&name=${firstName}+${lastName}`} width="35" height="35" className="rounded-circle" />
+                <Image alt="avatar" loader={myLoader} src={user.picture || `https://ui-avatars.com/api/?background=random&name=${firstName}+${lastName}`} width="35" height="35" className="rounded-circle" />
               </Nav.Link>
             </>
           }
