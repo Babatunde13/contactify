@@ -32,8 +32,12 @@ const Contact = ({
           <Image loader={myLoader} src={avatar} width="35" height="35" className="rounded-circle" />
         </td>
         <td>{firstName} {lastName}</td>
-        <td>{email}</td>
-        <td>{phone}</td>
+        <td>
+          <a href={`mailto:${email}`}>{email}</a>
+        </td>
+        <td>
+          <a href={`tel:${phone}`}>{phone}</a>
+        </td>
         <td>{address}</td>
         <td><Button onClick={editContact}>Edit</Button></td>
         <td><Button onClick={deleteContact}>Delete</Button></td>
