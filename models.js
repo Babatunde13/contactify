@@ -10,7 +10,8 @@ export const createContact = async (
   user, 
   jobTitle, 
   company,
-  address
+  address,
+  avatar
 ) => {
   const date = new Date()
   const months = [
@@ -29,6 +30,7 @@ export const createContact = async (
           company,
           jobTitle,
           address,
+          avatar,
           created__at: `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
           user: {
             id: user.sub

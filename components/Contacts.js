@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import { useState } from 'react'
@@ -10,6 +11,7 @@ const Contact = ({
   email,
   phone,
   address,
+  avatar,
   handleDelete,
   handleEdit
 }) => {
@@ -20,13 +22,15 @@ const Contact = ({
   }
 
   const deleteContact = () => {
-    console.log(id)
     handleDelete(id)
     alert('Contact deleted successfully')
   }
 
   return (
       <tr>
+        <td>
+          <Image loader={myLoader} src={avatar} width="35" height="35" className="rounded-circle" />
+        </td>
         <td>{firstName} {lastName}</td>
         <td>{email}</td>
         <td>{phone}</td>
@@ -64,6 +68,7 @@ const Contacts = ({contacts, handleEdit, handleDelete}) => {
       <Table striped bordered hover responsive>
         <thead>
           <tr>
+            <th>avatar</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
@@ -81,6 +86,10 @@ const Contacts = ({contacts, handleEdit, handleDelete}) => {
       </Table>
     </>
   )
+}
+
+const myLoader=({src})=>{
+  return src;
 }
 
 export default Contacts

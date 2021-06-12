@@ -8,13 +8,13 @@ export default withApiAuthRequired(async (req, res) => {
     if (req.method === 'POST') {
         let {
             firstName, lastName, email,
-            company, jobTitle, phone, address
+            company, jobTitle, phone, address, avatar
         } = req.body
         let newContact = await createContact(
             firstName, lastName, 
             email, phone,
             user, jobTitle, 
-            company, address
+            company, address, avatar
         )
         res.status(201).json({ 
             message: "Successfully created contact",

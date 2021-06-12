@@ -1,9 +1,9 @@
 import Head from 'next/head'
 
-const MetaData = () => {
+const MetaData = ({title}) => {
     return (
         <Head>
-            <title>Contact Manager App</title>
+            <title>{`Contact Manager App ${title && "| " +title}`}</title>
             <meta name="description" content="A simple Password Manager" />
             <link rel="icon" href="/favicon.ico" />
       </Head>
