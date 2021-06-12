@@ -5,8 +5,9 @@ import axios from 'axios'
 import CreateContactModal from '../components/CreateContact.modal'
 import Contacts from '../components/Contacts'
 import MetaData from '../components/MetaData'
+import styles from '../styles/Home.module.css'
 
-const dashboard = () => {
+const Dashboard = () => {
     const {user} = useUser()
     console.log(user)
     const [contacts, setContacts] = useState([])
@@ -44,11 +45,13 @@ const dashboard = () => {
             <MetaData title="Dashboard" />
             <main className="mt-5 p-5">
             {user && (
-                <div>
-                    <img src={user.picture} className="rounded-circle m-3"/> 
-                    <span>Welcome {user.nickname.toLowerCase().charAt(0).toUpperCase()+user.nickname.toLowerCase().slice(1)}</span> 
-                    {!user.email_verified && <div>Your account is not verified</div>}
-                    <>
+                <div className={styles.dashboardContainer}>
+                    <div>
+                        <img src={user.picture} className="rounded-circle m-3"/> 
+                        <span>Welcome {user.nickname.toLowerCase().charAt(0).toUpperCase()+user.nickname.toLowerCase().slice(1)}</span> 
+                        {!user.email_verified && <div>Your account is not verified</div>}
+                    </div>
+                    <div>
                         <Button variant="primary" onClick={() => setCreateModalShow(true)}>
                             Create New Contact
                         </Button>
@@ -57,7 +60,7 @@ const dashboard = () => {
                             onHide={handleHide}
                             onCreate ={(payload) => {createContact(payload); setCreateModalShow(false)}}
                         />
-                    </>
+                    </div>
                 </div>
             )}
             </main>
@@ -72,4 +75,4 @@ const dashboard = () => {
 
 export const getServerSideProps = withPageAuthRequired()
 
-export default dashboard
+export default Dashboard

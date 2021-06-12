@@ -13,10 +13,10 @@ export default function Home() {
   if (user) router.push('/dashboard') 
   
   return (
-    <div className={styles.container}>
+    <div>
       <MetaData title="" />
-      <main className={styles.main}>
-        <Image src="/home.jpeg" width="800" height="500" />
+      <main className={styles.container}>
+        <Image className={styles.img} src="/home.jpeg" width="400" height="200" />
       </main>
     </div>
   )
