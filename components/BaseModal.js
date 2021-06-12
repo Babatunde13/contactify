@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 
 const BaseModal = (props)  => {
   const onHide = () => {
-    console.log(props.create)
     if (props.create) {
       props.updateFirstName('')
       props.updateLastName('')

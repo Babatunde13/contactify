@@ -16,7 +16,7 @@ export default function Home() {
     <div>
       <MetaData title="" />
       <main className={styles.container}>
-        <Image className={styles.img} src="/home.jpeg" width="400" height="200" />
+        <Image className={styles.img} alt="home" src="/home.jpeg" width="400" height="200" />
       </main>
     </div>
   )
