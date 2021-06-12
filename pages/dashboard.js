@@ -47,7 +47,7 @@ const Dashboard = () => {
                 {user && (
                     <div className={styles.dashboardContainer}>
                         <div>
-                            <img src={user.picture} className="rounded-circle m-3"/> 
+                            <img src={user.picture} className="rounded-circle m-3" width="100" height="100"/> 
                             <span>Welcome {user.nickname.toLowerCase().charAt(0).toUpperCase()+user.nickname.toLowerCase().slice(1)}</span> 
                             {!user.email_verified && <div>Your account is not verified</div>}
                         </div>

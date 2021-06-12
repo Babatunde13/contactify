@@ -1,0 +1,53 @@
+{
+  "name": "Contact Manager App",
+  "short_name": "contactify",
+  "theme_color": "#ffffff",
+  "background_color": "#004740",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "home.jpeg",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "home.jpeg",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "home.jpeg",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "home.jpeg",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "home.jpeg",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "home.jpeg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "home.jpeg",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "home.jpeg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "splash_pages": null
+}

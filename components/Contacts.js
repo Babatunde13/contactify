@@ -29,7 +29,7 @@ const Contact = ({
   return (
       <tr>
         <td>
-          <Image loader={myLoader} src={avatar} width="35" height="35" className="rounded-circle" />
+          <Image alt="avt" loader={myLoader} src={avatar} width="35" height="35" className="rounded-circle" />
         </td>
         <td>{firstName} {lastName}</td>
         <td>
