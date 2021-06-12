@@ -43,26 +43,26 @@ const Dashboard = () => {
     return (
         <div>
             <MetaData title="Dashboard" />
-            <main className="mt-5 p-5">
-            {user && (
-                <div className={styles.dashboardContainer}>
-                    <div>
-                        <img src={user.picture} className="rounded-circle m-3"/> 
-                        <span>Welcome {user.nickname.toLowerCase().charAt(0).toUpperCase()+user.nickname.toLowerCase().slice(1)}</span> 
-                        {!user.email_verified && <div>Your account is not verified</div>}
+            <main>
+                {user && (
+                    <div className={styles.dashboardContainer}>
+                        <div>
+                            <img src={user.picture} className="rounded-circle m-3"/> 
+                            <span>Welcome {user.nickname.toLowerCase().charAt(0).toUpperCase()+user.nickname.toLowerCase().slice(1)}</span> 
+                            {!user.email_verified && <div>Your account is not verified</div>}
+                        </div>
+                        <div>
+                            <Button variant="primary" onClick={() => setCreateModalShow(true)}>
+                                Create New Contact
+                            </Button>
+                            <CreateContactModal
+                                show={createModalShow}
+                                onHide={handleHide}
+                                onCreate ={(payload) => {createContact(payload); setCreateModalShow(false)}}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <Button variant="primary" onClick={() => setCreateModalShow(true)}>
-                            Create New Contact
-                        </Button>
-                        <CreateContactModal
-                            show={createModalShow}
-                            onHide={handleHide}
-                            onCreate ={(payload) => {createContact(payload); setCreateModalShow(false)}}
-                        />
-                    </div>
-                </div>
-            )}
+                )}
             </main>
             <Contacts 
                 contacts={contacts}

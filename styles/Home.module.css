@@ -15,14 +15,14 @@
 
 .dashboardContainer {
   min-height: 60vh;
-  padding: 0 0rem;
-  margin: 0%;
+  padding: 0px;
+  margin: 0px;
   padding-top: 5rem;
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   color: rgb(3, 3, 3);
-  /* background: linear-gradient(to right, rgb(50, 50, 121), rgb(204, 211, 225)); */
+  background: linear-gradient(to right, rgb(50, 50, 121), rgb(204, 211, 225));
 }
 
 @media (max-width: 600px) {
