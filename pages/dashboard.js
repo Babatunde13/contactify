@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   useEffect(async () => {
     let res = (await axios.get(`/api/contacts`)).data
-    res = res.data
+    res = await res.data
     setContacts(res.reverse())
   }, [])
 
