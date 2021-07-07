@@ -40,7 +40,7 @@ export default withApiAuthRequired(async (req, res) => {
         res.status(405).json({
             message: 'Method not allowed',
             data: null,
-            sttaus: false
+            status: false
         })
     }
 })

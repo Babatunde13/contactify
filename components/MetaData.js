@@ -4,7 +4,7 @@ const MetaData = ({title}) => {
     return (
         <Head>
             <title>{`Contact Manager App ${title && "| " +title}`}</title>
-            <meta name="description" content="A simple Password Manager" />
+            <meta name="description" content="A simple Contact Manager" />
             <link rel="icon" href="/favicon.ico" />
       </Head>
     )

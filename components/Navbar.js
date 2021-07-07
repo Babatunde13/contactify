@@ -12,7 +12,7 @@ const NavbarComponent = () => {
       <Navbar.Brand className="mx-2 mx-md-4" href="/">Contact Manager</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="d-lg-flex justify-content-end" id="responsive-navbar-nav">
-          {(!user & !isLoading & !error) ? 
+          {(!user & !error) ? 
             <>
               <Nav.Link className="text-light" href="api/auth/login">Sign In </Nav.Link> : 
             <Image alt="avatar" loader={myLoader} src={`https://ui-avatars.com/api/?background=random&name=John+Doe`} width="35" height="35" className="rounded-circle" />
